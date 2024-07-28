@@ -1,0 +1,92 @@
+
+(rules PCB iecprinter
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 363)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.7)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.6)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.0)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd-smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (class default
+    SQRIN ATN "CLOCK_IN" "DATA_IN" "unconnected-(U5-Pad1)" "unconnected-(U5-Pad12)" "unconnected-(U5-Pad18)" "unconnected-(U5-Pad19)"
+    "unconnected-(U5-Pad23)" "unconnected-(U5-Pad26)" "unconnected-(U5-Pad27)" "unconnected-(U5-Pad28)" RESET "Net-(J3-Pad1)" "ONLINE_LED" "ONLINE_SWITCH"
+    "Net-(J5-Pad1)" "BUSY_LED" "Net-(J6-Pad1)" "ADDRESS_SWITCH" "LV_ATN" "LV_DATA_IN" "LV_CLOCK_IN" "LV_SRQIN"
+    "unconnected-(U5-Pad4)" "unconnected-(U5-Pad5)" "unconnected-(U5-Pad6)" "unconnected-(U5-Pad8)" "unconnected-(U5-Pad9)" "unconnected-(U5-Pad10)" "unconnected-(U5-Pad11)" "unconnected-(U5-Pad13)"
+    "CLOCK_OUT" "DATA_OUT" "unconnected-(U6-Pad5)" "unconnected-(U6-Pad6)" "unconnected-(U6-Pad8)" "unconnected-(U6-Pad9)" "unconnected-(U6-Pad10)" "unconnected-(U6-Pad11)"
+    "unconnected-(U6-Pad12)" "unconnected-(U6-Pad13)"
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class POWER
+    +5V GND +3.3V
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
